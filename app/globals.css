@@ -1,0 +1,244 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   AUREUM — Global styles
+   Luxury dark theme · champagne gold accents · cinematic feel
+   ============================================================ */
+
+:root {
+  --color-ink: #070708;
+  --color-ink-soft: #0a0a0c;
+  --color-bone: #faf8f2;
+  --color-gold: #d4af37;
+  --color-gold-soft: #e6cb73;
+  --grain-opacity: 0.04;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html,
+body {
+  background: var(--color-ink);
+  color: var(--color-bone);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* selection */
+::selection {
+  background: rgba(212, 175, 55, 0.4);
+  color: var(--color-bone);
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d4af37, #9a751e);
+  border-radius: 999px;
+}
+
+/* ============================================================
+   Typography helpers
+   ============================================================ */
+.text-display {
+  font-family: var(--font-display), serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+
+.text-eyebrow {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  font-size: 0.7rem;
+  color: rgba(230, 203, 115, 0.85);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* ============================================================
+   Aureum signature components
+   ============================================================ */
+
+/* Grain overlay — film texture */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* Glass panel */
+.glass {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 30px 80px -20px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+.glass-gold {
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.08) 0%,
+    rgba(212, 175, 55, 0.01) 100%
+  );
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+}
+
+/* Gold gradient text */
+.text-gold-grad {
+  background: linear-gradient(
+    180deg,
+    #fbf4dc 0%,
+    #e6cb73 35%,
+    #d4af37 65%,
+    #9a751e 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hairline divider */
+.hairline {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212, 175, 55, 0.3) 50%,
+    transparent 100%
+  );
+  height: 1px;
+}
+
+/* Shimmer effect */
+.shimmer {
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 65%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Reveal-on-scroll initial state */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* Magnetic button base */
+.magnet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  will-change: transform;
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Section dividers with vertical scrolling line */
+.scroll-line {
+  position: relative;
+  width: 1px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+.scroll-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent, #d4af37, transparent);
+  animation: scrollLine 2.2s ease-in-out infinite;
+}
+
+/* Cinematic vignette */
+.vignette::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 40%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}
+
+/* No-scrollbar for horizontal tracks */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Hover lift */
+.hover-lift {
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 50px 100px -30px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(212, 175, 55, 0.18) inset;
+}
+
+/* Marquee */
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
