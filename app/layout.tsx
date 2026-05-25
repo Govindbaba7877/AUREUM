@@ -3,7 +3,6 @@ import { Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 import SmoothScroll from "@/components/layout/SmoothScroll";
-import Cursor from "@/components/layout/Cursor";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Loader from "@/components/layout/Loader";
@@ -69,7 +68,6 @@ export default function RootLayout({
       <body className="bg-ink-950 text-bone-50 antialiased">
         <Loader />
         <div className="grain" aria-hidden />
-        <Cursor />
         <SmoothScroll>
           <Navbar />
           <main className="relative">{children}</main>
